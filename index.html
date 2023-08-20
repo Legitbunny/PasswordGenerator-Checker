@@ -4,130 +4,134 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>Password Generator & Checker</title>
+    <link rel="shortcut icon" href="./assets/password.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <div class="wrapper">
+    <div class="blur-wrapper">
 
-        <!-- <img src="./assets/data-security-threat.svg" alt=""> -->
+        <div class="wrapper">
 
-        <div class="check-gen">
-
-            <input type="radio" name="op-btn" id="op-1" class="op-btn" checked>
-            <label for="op-1" class="heading">Password Generator</label>
-
-            <input type="radio" name="op-btn" id="op-2" class="op-btn">
-            <label for="op-2" class="heading">Check my Password Strength</label>
-
-        </div>
-
-        <div class="pwd-checker" id="checker">
-
-            <div class="display-container">
-
-                <!--input-->
-                <input type="password" placeholder="Enter your Password" class="pwd-input" data-pwdInput>
-
-                <!--copy button-->
-                <button data-cpy class="copy-btn">
-                    <span data-cpyMsg class="tooltip"></span>
-
-                    <img src="./assets/copy.svg" alt="copy" width="23px" height="23px">
-                </button>
-
+            <!-- <img src="./assets/data-security-threat.svg" alt=""> -->
+    
+            <div class="check-gen">
+    
+                <input type="radio" name="op-btn" id="op-1" class="op-btn" checked>
+                <label for="op-1" class="heading">Password Generator</label>
+    
+                <input type="radio" name="op-btn" id="op-2" class="op-btn">
+                <label for="op-2" class="heading">Check my Password Strength</label>
+    
             </div>
-
-            <div class="output-container">
-
-                    <!---pwdlen-->
-                <div class="pwd-len">
-                    <p>Password Length</p>
-                    <p data-len>0</p>
+    
+            <div class="pwd-checker" id="checker">
+    
+                <div class="display-container">
+    
+                    <!--input-->
+                    <input type="password" placeholder="Enter your Password" class="pwd-input" maxlength="30" data-pwdInput>
+    
+                    <!--copy button-->
+                    <button data-cpy class="copy-btn">
+                        <span data-cpyMsg class="tooltip"></span>
+    
+                        <img src="./assets/copy.svg" alt="copy" width="23px" height="23px">
+                    </button>
+    
                 </div>
-
-                <input class="slider2" type="range" name="slider" id="chksli" min="0" max="30" step="1" data-chkSlider>
-
-                <!--checkbox-->
-                <div class="check">
-                    <input type="checkbox" name="uc" id="uc">
-                    <label for="uc">Uppercase Letters are present</label>
+    
+                <div class="output-container">
+    
+                        <!---pwdlen-->
+                    <div class="pwd-len">
+                        <p>Password Length</p>
+                        <p data-len>0</p>
+                    </div>
+    
+                    <input class="slider" type="range" name="slider" id="chksli" min="0" max="30" step="1" data-chkSlider>
+    
+                    <!--checkbox-->
+                    <div class="check">
+                        <input type="checkbox" name="uc" id="uc">
+                        <label for="uc">Uppercase Letters are present</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" name="uc" id="lc">
+                        <label for="lc">Uppercase Letters are present</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" name="uc" id="num">
+                        <label for="num">Numbers are present</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" name="uc" id="sym">
+                        <label for="sym">Symbols are present</label>
+                    </div>
+    
+                    <!--Show strength-->
+                    <div class="strn-container">
+                        <p class="strn">Strength</p>
+                        <div data-indic class="indic"></div>
+                    </div>
                 </div>
-                <div class="check">
-                    <input type="checkbox" name="uc" id="lc">
-                    <label for="lc">Uppercase Letters are present</label>
-                </div>
-                <div class="check">
-                    <input type="checkbox" name="uc" id="num">
-                    <label for="num">Numbers are present</label>
-                </div>
-                <div class="check">
-                    <input type="checkbox" name="uc" id="sym">
-                    <label for="sym">Symbols are present</label>
-                </div>
-
-                <!--Show strength-->
-                <div class="strn-container">
-                    <p class="strn">Strength</p>
-                    <div data-indic class="indic"></div>
-                </div>
+    
             </div>
-
-        </div>
-
-        <div class="pwd-generator" id="generator">
-
-            <!--output-->
-            <div class="display-container">
-
-                <input readonly placeholder = "Password" class="display" data-passwordDisplay>
-
-                <button data-copy class="copy-btn">
-                    <span data-copyMsg class="tooltip"></span>
-
-                    <img src="./assets/copy.svg" alt="copy" width="23px" height="23px">
-                </button>
-            </div>
-
-            <!--input container-->
-            <div class="input-container">
-
-                <!--pwd length-->
-                <div class="length-container">
-                    <p>Password Length</p>
-                    <p data-lengthNum>8</p>
+    
+            <div class="pwd-generator" id="generator">
+    
+                <!--output-->
+                <div class="display-container">
+    
+                    <input readonly placeholder = "Password" class="display" data-passwordDisplay>
+    
+                    <button data-copy class="copy-btn">
+                        <span data-copyMsg class="tooltip"></span>
+    
+                        <img src="./assets/copy.svg" alt="copy" width="23px" height="23px">
+                    </button>
                 </div>
-
-                <!--slider-->
-                <input type="range" min="8" max="20" class="slider" step="1" data-lengthSlider>
-
-                <!--checkboxes-->
-                <div class="check">
-                    <input type="checkbox" id="uppercase">
-                    <label for="uppercase">Include Uppercase Letters</label>
+    
+                <!--input container-->
+                <div class="input-container">
+    
+                    <!--pwd length-->
+                    <div class="length-container">
+                        <p>Password Length</p>
+                        <p data-lengthNum>8</p>
+                    </div>
+    
+                    <!--slider-->
+                    <input type="range" min="8" max="20" class="slider" step="1" data-lengthSlider>
+    
+                    <!--checkboxes-->
+                    <div class="check">
+                        <input type="checkbox" id="uppercase">
+                        <label for="uppercase">Include Uppercase Letters</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="lowercase">
+                        <label for="lowercase">Include Lowercase Letters</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="numbers">
+                        <label for="numbers">Include Numbers</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="symbol">
+                        <label for="symbol">Include Symbol</label>
+                    </div>
+    
+                    <!--strength   -->
+                    <div class="strength-container">
+                        <p class="strength">Strength</p>
+                        <div data-indicator class="indicator"></div>
+                    </div>
+    
+                    <!--Generate PWD-->
+                    <button class="generateButton">Generate Password</button>
                 </div>
-                <div class="check">
-                    <input type="checkbox" id="lowercase">
-                    <label for="lowercase">Include Lowercase Letters</label>
-                </div>
-                <div class="check">
-                    <input type="checkbox" id="numbers">
-                    <label for="numbers">Include Numbers</label>
-                </div>
-                <div class="check">
-                    <input type="checkbox" id="symbol">
-                    <label for="symbol">Include Symbol</label>
-                </div>
-
-                <!--strength   -->
-                <div class="strength-container">
-                    <p class="strength">Strength</p>
-                    <div data-indicator class="indicator"></div>
-                </div>
-
-                <!--Generate PWD-->
-                <button class="generateButton">Generate Password</button>
             </div>
         </div>
     </div>

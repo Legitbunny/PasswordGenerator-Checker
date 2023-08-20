@@ -19,16 +19,17 @@ let passwordLength = 8;
 let checkCount = 0;
 handleSlider();
 //set strength circle to grey
-setIndicator('#ccc');
+setIndicator("#ccc");
 
 //set password length
 function handleSlider() {
   inputSlider.value = passwordLength;
   lengthDisplay.innerText = passwordLength;
-  //or kuch bhi karna h?? -- slider 
+  //or kuch bhi karna h?? -- slider
   const min = inputSlider.min;
-    const max = inputSlider.max;
-    inputSlider.style.backgroundSize = ( (passwordLength - min)*100/(max - min)) + "% 100%"
+  const max = inputSlider.max;
+  inputSlider.style.backgroundSize =
+    ((passwordLength - min) * 100) / (max - min) + "% 100%";
 }
 
 function setIndicator(color) {
@@ -101,7 +102,6 @@ async function copyContent() {
 function shufflePassword(shufflePassword) {
   //Fisher Yates Method
   for (let i = shufflePassword.length - 1; i > 0; i--) {
-
     //random j, finding out random j using random function
     const j = Math.floor(Math.random() * (i + 1));
 
@@ -146,6 +146,7 @@ copyBtn.addEventListener("click", () => {
 generateBtn.addEventListener("click", () => {
   //none of the cheeck box are selected
   if (checkCount == 0) {
+    alert("Select at least one checkbox to generate password")
     return;
   }
 
@@ -230,17 +231,23 @@ function calclen() {
 
 //show length in UI
 const slider = document.querySelector("[data-chkSlider]");
+slider.disabled=true;
 const pwdLength = document.querySelector("[data-len]");
 
 let pwd = "";
 let pwdlen = 0;
 slider.value = 0;
+slider.style.backgroundSize = "0% 100%"
 //lenDisplay();
 
 function lenDisplay() {
   pwdlen = calclen();
   slider.value = pwdlen;
   pwdLength.innerText = pwdlen;
+
+  const min = slider.min;
+  const max = slider.max;
+  slider.style.backgroundSize = ((pwdlen - min) * 100) / (max - min) + "% 100%";
 }
 
 pwdInp.addEventListener("input", (e) => {
@@ -250,6 +257,7 @@ pwdInp.addEventListener("input", (e) => {
 });
 
 const a = document.getElementById("uc");
+a.disabled=true;
 a.checked = false;
 
 function uCCheck(str) {
@@ -262,6 +270,7 @@ function uCCheck(str) {
 }
 
 const b = document.getElementById("lc");
+b.disabled=true;
 b.checked = false;
 
 function lCCheck(str) {
@@ -274,6 +283,7 @@ function lCCheck(str) {
 }
 
 const c = document.getElementById("num");
+c.disabled=true;
 c.checked = false;
 
 function numCheck(str) {
@@ -286,6 +296,7 @@ function numCheck(str) {
 }
 
 const symele = document.getElementById("sym");
+symele.disabled=true;
 symele.checked = false;
 
 function symCheck(str) {
@@ -301,7 +312,7 @@ function symCheck(str) {
 const indi = document.querySelector("[data-indic]");
 
 //default color
-setColor('#ccc');
+setColor("#ccc");
 
 function setColor(col) {
   indi.style.backgroundColor = col;
@@ -332,45 +343,41 @@ function calcStren() {
 
 const cpyMsg = document.querySelector("[data-cpyMsg]");
 
-async function cpyClipboard(){
-    try{
-        await navigator.clipboard.writeText(pwdInp.value);
-        cpyMsg.innerText = "Copied";
-    }
-    catch(e){
-        cpyMsg.innerText = "Failed";
-    }
-  
-    //to make copy span visible
-    cpyMsg.classList.add("active");
-  
-    setTimeout(() => {
-      cpyMsg.classList.remove("active");
-    }, 2000);
+async function cpyClipboard() {
+  try {
+    await navigator.clipboard.writeText(pwdInp.value);
+    cpyMsg.innerText = "Copied";
+  } catch (e) {
+    cpyMsg.innerText = "Failed";
+  }
+
+  //to make copy span visible
+  cpyMsg.classList.add("active");
+
+  setTimeout(() => {
+    cpyMsg.classList.remove("active");
+  }, 2000);
 }
 
+cpyBtn.addEventListener("click", () => {
+  if (pwdInp.value) {
+    cpyClipboard();
+  } else {
+    alert("There is no input given !!");
+  }
+});
 
-
-cpyBtn.addEventListener ("click",() =>{
-    if(pwdInp.value){
-        cpyClipboard();
-    }
-    else{
-        alert("There is no input given !!")
-    }
-})
-
-const check = document.getElementById('op-1');
-const gene = document.getElementById('op-2');
-const chker = document.getElementById('checker');
-const genr = document.getElementById('generator');
+const check = document.getElementById("op-1");
+const gene = document.getElementById("op-2");
+const chker = document.getElementById("checker");
+const genr = document.getElementById("generator");
 chker.style.display = "none";
 
-gene.addEventListener('click', () => {
-    chker.style.display = "block";
-    genr.style.display = "none";
-})
-check.addEventListener('click', () => {
-    chker.style.display = "none";
-    genr.style.display = "block";
-})
+gene.addEventListener("click", () => {
+  chker.style.display = "block";
+  genr.style.display = "none";
+});
+check.addEventListener("click", () => {
+  chker.style.display = "none";
+  genr.style.display = "block";
+});
